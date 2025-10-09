@@ -138,13 +138,3 @@ Feel free to submit issues, feature requests, or pull requests to improve this a
 ## License
 
 This project is open source. Please cite appropriately if used in academic work.
-
-## Contact
-
-[Your Name] - [Your Email]
-[Your Institution/Lab]
-
-## Acknowledgments
-
-- Data format based on Neurodata Without Borders (NWB) standards
-- Analysis inspired by computational neuroscience approaches for model organisms
