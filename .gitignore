@@ -132,13 +132,13 @@ dmypy.json
 .idea/
 .vscode/
 
-# Large data files
-*.nwb
+# Large data files (keeping essential dataset)
+# *.nwb  # Commented out to allow essential dataset
 *.h5
 *.hdf5
 
-# Generated images
-*.png
+# Generated images (keeping essential final results)
+# *.png  # Commented out to allow final results
 *.jpg
 *.pdf
 
