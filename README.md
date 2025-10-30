@@ -1,3 +1,55 @@
+## celegans-neural-analysis — Project overview
+
+This repository contains analysis code and interactive visualizations for C. elegans neural calcium imaging data. It has been reorganized to separate
+data-analysis scripts, interactive dashboard generators, and generated assets.
+
+Top-level structure (after cleanup)
+
+- `analysis_code/` — data preprocessing, PCA, static plotting and analysis scripts.
+- `interactive_code/` — dashboard generators, Plotly/Dash apps and generated HTML (interactive outputs).
+- `generated_images/` — PNG/JPG/SVG outputs produced by analysis scripts.
+- `archive_removed_debug/` — archived debug/test files and backups of removed READMEs/requirements.
+- `requirements_consolidated.txt` — consolidated, pinned dependency list for reproducible installs (preferred).
+
+Quick start
+
+1. Create and activate a virtual environment:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
+```
+
+2. Install dependencies:
+
+```powershell
+# Preferred: use the consolidated, pinned requirements for reproducible installs
+pip install -r requirements_consolidated.txt
+```
+
+3. Run an analysis or open the interactive outputs:
+
+```powershell
+# Run static analysis scripts (from repo root)
+python analysis_code/generate_PCA_Final_Clean.py
+
+# Regenerate interactive HTML outputs (optional)
+python interactive_code/Interactive_3D_Visualizations.py
+python interactive_code/Simple_3D_Visualizations.py
+
+# Open the interactive HTML files (one-click):
+.\open_interactive_graphs.bat
+
+# Note: The Dash server is optional; the static HTML files in `interactive_code/` are self-contained.
+# To start the Dash server (only if you want a live app):
+# python interactive_code/dash_neural_app.py
+```
+
+Notes
+- The interactive generator scripts have been updated to write files into `interactive_code/` and to resolve the data CSV in the repo root if it's not found in the current working directory.
+- Original README and desktop README files were archived in `archive_removed_debug/`.
+
+If you need help running any specific script, tell me which one and I'll provide exact commands and any necessary adjustments.
 # C. elegans Neural Activity Analysis
 
 This repository contains Python scripts for analyzing neural activity data from *C. elegans* using calcium imaging data stored in NWB (Neurodata Without Borders) format.
@@ -138,13 +190,3 @@ Feel free to submit issues, feature requests, or pull requests to improve this a
 ## License
 
 This project is open source. Please cite appropriately if used in academic work.
-
-## Contact
-
-[Your Name] - [Your Email]
-[Your Institution/Lab]
-
-## Acknowledgments
-
-- Data format based on Neurodata Without Borders (NWB) standards
-- Analysis inspired by computational neuroscience approaches for model organisms

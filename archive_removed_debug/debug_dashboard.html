@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Neural Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Debug Dashboard</h1>
+    <div id="test-plot" style="width:100%;height:400px;"></div>
+    
+    <script>
+        // Simple test data
+        const testData = [{
+            x: [1, 2, 3, 4],
+            y: [2, 4, 1, 3], 
+            z: [1, 3, 2, 4],
+            mode: 'markers+lines',
+            type: 'scatter3d',
+            name: 'Test Trace'
+        }];
+        
+        const layout = {
+            title: 'Test 3D Plot',
+            scene: {
+                xaxis: {title: 'X'},
+                yaxis: {title: 'Y'},
+                zaxis: {title: 'Z'}
+            }
+        };
+        
+        console.log('Creating test plot...');
+        Plotly.newPlot('test-plot', testData, layout);
+        console.log('Test plot created!');
+    </script>
+</body>
+</html>
