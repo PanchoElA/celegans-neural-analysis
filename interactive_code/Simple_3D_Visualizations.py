@@ -25,11 +25,11 @@ import os
 
 def create_3d_visualizations():
     """Función principal para crear visualizaciones 3D"""
-    print("🧠 INICIANDO VISUALIZACIONES 3D INTERACTIVAS")
+    print("INICIANDO VISUALIZACIONES 3D INTERACTIVAS")
     print("=" * 60)
     
     # Cargar datos
-    print("📊 Cargando datos neurales...")
+    print("Cargando datos neurales...")
     data_file = 'neural_data_dataframe.csv'
     # prefer cwd, else try parent repo root where data usually lives
     if not os.path.exists(data_file):

@@ -133,7 +133,7 @@ dmypy.json
 .vscode/
 
 # Large data files (keeping essential dataset)
-# *.nwb  # Commented out to allow essential dataset
+*.nwb
 *.h5
 *.hdf5
 
