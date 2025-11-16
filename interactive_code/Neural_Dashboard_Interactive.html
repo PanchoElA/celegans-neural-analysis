@@ -4,6 +4,7 @@
 <head>
     <title>Neural Dynamics Interactive Dashboard</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
         .dashboard { max-width: 1400px; margin: 0 auto; }
@@ -138,6 +139,13 @@
                 <button onclick="toggleFullscreen('segments-pca-plot')" style="float: right; padding: 5px 10px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 12px;">📺 Fullscreen</button>
             </h3>
             <div id="segments-pca-plot" style="height: 500px;"></div>
+        </div>
+
+        <div class="plot-container">
+            <h3>PC1 vs PC2 vs PC3 by Cluster
+                <button onclick="toggleFullscreen('cluster-plot')" style="float: right; padding: 5px 10px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 12px;">📺 Fullscreen</button>
+            </h3>
+            <div id="cluster-plot" style="height: 500px;"></div>
         </div>
     </div>
 
@@ -1180,6 +1188,48 @@
         
     // Initialize plots
     updatePlots();
+
+    // New code for cluster plot
+    d3.csv('../predicting_model/neural_plus_behavior_clusters.csv').then(function(data) {
+        var clusters = {};
+        var cluster_colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'];
+        data.forEach(function(d) {
+            var cluster = d.neural_cluster;
+            if (!clusters[cluster]) {
+                clusters[cluster] = {
+                    x: [],
+                    y: [],
+                    z: [],
+                    mode: 'lines',
+                    type: 'scatter3d',
+                    name: 'Cluster ' + cluster,
+                    line: {
+                        width: 6,
+                        color: cluster_colors[cluster]
+                    }
+                };
+            }
+            clusters[cluster].x.push(+d.PC1);
+            clusters[cluster].y.push(+d.PC2);
+            clusters[cluster].z.push(+d.PC3);
+        });
+
+        var plotData = Object.values(clusters);
+
+        var layout = {
+            title: 'PC1 vs PC2 vs PC3 by Cluster',
+            scene: {
+                xaxis: {title: 'PC1'},
+                yaxis: {title: 'PC2'},
+                zaxis: {title: 'PC3'}
+            },
+            margin: { l: 0, r: 0, b: 0, t: 40 }
+        };
+
+        Plotly.newPlot('cluster-plot', plotData, layout);
+    }).catch(function(error){
+        console.log(error);
+    });
     </script>
 </body>
 </html>
